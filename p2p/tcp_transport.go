@@ -11,7 +11,14 @@ type TCPTransport interface {
 func NewTCPTransport (listenAddr, string ) *TCPTransport {
   return &TCPTransport {
     listenAddress: listenAddr,
+  }
+}
 
+func (t *TCPTransport) ListenAndAccept () error {
+  var err error
+  t.listener, err := net.Listen("tcp",t.listenAddress)
+  if err != null {
+    return err
   }
 }
 
